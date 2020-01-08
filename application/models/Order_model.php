@@ -4,6 +4,7 @@ class Order_model extends CI_Model
 {
 	public function get_running_categories($store_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('ssp_categories.category_id, ssp_categories.name');
 		$this->db->from('ssp_categories');
 		$this->db->join('ssp_category_stores as category_store', 'category_store.category_id = ssp_categories.category_id');
@@ -18,6 +19,7 @@ class Order_model extends CI_Model
 
 	function get_categories($store_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('ssp_categories.category_id, ssp_categories.name');
 		$this->db->from('ssp_categories');
 		$this->db->join('ssp_category_stores as category_store', 'category_store.category_id = ssp_categories.category_id');
@@ -31,6 +33,7 @@ class Order_model extends CI_Model
 
 	public function get_running_items($client_id, $store_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('IFNULL(item_prices.`unit_price`, items.`unit_price`) as `unit_price`,items.*, cat.name as category_name, item_quantities.quantity, cat.category_id');
 		$this->db->from('items');
 		$this->db->join('ssp_item_stores as stores', 'stores.item_id = items.item_id AND stores.store_id = '. $store_id);
@@ -50,6 +53,7 @@ class Order_model extends CI_Model
 
 	function get_items($client_id, $store_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('items.*, cat.name as category_name, item_quantities.quantity, cat.category_id');
 		$this->db->from('items');
 		$this->db->join('ssp_item_stores as stores', 'stores.item_id = items.item_id AND stores.store_id = '. $store_id);
@@ -66,6 +70,7 @@ class Order_model extends CI_Model
 
 	function get_item_unit_price($item_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->from('items');
 		$this->db->where('items.item_id', $item_id);
 
@@ -79,6 +84,7 @@ class Order_model extends CI_Model
 
 	function get_running_tables($store_id, $room_id = 0)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->from('ssp_order_table');
 		$this->db->where('store_id', $store_id);
 		if($room_id != 0)
@@ -93,6 +99,7 @@ class Order_model extends CI_Model
 
 	function get_room_lists($store_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->from('ssp_rooms');
 		$this->db->where('store_id', $store_id);
 
@@ -103,6 +110,7 @@ class Order_model extends CI_Model
 
 	function get_table_orders($store_id, $order_table_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->from('ssp_orders');
 		$this->db->where('ssp_orders.order_table_id', $order_table_id);
 		$this->db->where('ssp_orders.store_id', $store_id);
@@ -114,6 +122,7 @@ class Order_model extends CI_Model
 
 	function get_orders_by($order_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->from('ssp_orders');
 		$this->db->where('ssp_orders.order_id', $order_id);
 
@@ -124,6 +133,7 @@ class Order_model extends CI_Model
 
 	function get_table_detail_orders($store_id, $order_table_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('i.item_id, i.name, oi.quantity_purchased, oi.item_price');
 		$this->db->from('ssp_orders');
 		$this->db->join('ssp_order_items as oi', 'oi.order_id = ssp_orders.order_id');
@@ -138,6 +148,7 @@ class Order_model extends CI_Model
 
 	function get_order_details($order_id, $item_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('i.item_id, i.name, oi.quantity_purchased, oi.item_price');
 		$this->db->from('ssp_orders');
 		$this->db->join('ssp_order_items as oi', 'oi.order_id = ssp_orders.order_id');
@@ -151,6 +162,7 @@ class Order_model extends CI_Model
 
 	function get_detail_orders_by($order_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('i.item_id, i.name, oi.quantity_purchased, oi.item_price');
 		$this->db->from('ssp_orders');
 		$this->db->join('ssp_order_items as oi', 'oi.order_id = ssp_orders.order_id');
@@ -164,6 +176,7 @@ class Order_model extends CI_Model
 
 	function get_table_orders_by($order_table_name, $store_id, $room_id = 0)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('order_table_id, name');
 		$this->db->from('ssp_order_table');
 		$this->db->where('is_deleted', 0);
@@ -187,6 +200,7 @@ class Order_model extends CI_Model
 
 	function get_room_by($room_name, $store_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('room_id, room_name');
 		$this->db->from('ssp_rooms');
 		$this->db->where('ssp_rooms.store_id', $store_id);
@@ -204,6 +218,7 @@ class Order_model extends CI_Model
 
 	function get_store_id($store_name, $client_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('store_id, name');
 		$this->db->from('ssp_stores');
 		$this->db->where('isDeleted', 0);
@@ -222,6 +237,7 @@ class Order_model extends CI_Model
 
 	function get_item_id($item_name, $client_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->from('items');
 		$this->db->where('items.name', (string)$item_name);
 		$this->db->where('items.client_id', $client_id);
@@ -239,6 +255,7 @@ class Order_model extends CI_Model
 
 	function get_category_id($category_name, $store_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->select('ssp_categories.category_id, ssp_categories.name');
 		$this->db->from('ssp_categories');
 		$this->db->join('ssp_category_stores as category_store', 'category_store.category_id = ssp_categories.category_id');
@@ -258,6 +275,7 @@ class Order_model extends CI_Model
 
 	function inventory_per_item($store_id, $item_id, $category_id, $client_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$where = 'i.stock_type = 0 ';
 
 		$this->db->select('i.name, sc.name as category, inv.location_name as store_name, inv.trans_inventory as available_qty');
@@ -292,6 +310,7 @@ class Order_model extends CI_Model
 
 	function save($sale_order_data)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->trans_start();
 		
 		$this->db->insert('ssp_orders', $sale_order_data);
@@ -304,6 +323,7 @@ class Order_model extends CI_Model
 
 	function item_exists($item_id, $order_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		if (ctype_digit($item_id))
 		{
 			$this->db->from('ssp_order_items');
@@ -318,6 +338,7 @@ class Order_model extends CI_Model
 
 	function item_insert($item_data)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->trans_start();
 		
 		$this->db->insert('ssp_order_items', $item_data);
@@ -330,6 +351,7 @@ class Order_model extends CI_Model
 
 	function item_update($item_id, $order_id, $ordered_quantity)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->trans_start();
 
 		$items = array(
@@ -346,6 +368,7 @@ class Order_model extends CI_Model
 
 	function item_delete($item_id, $order_id)
 	{
+		$this->db->query("SET sql_mode = '' ");
 		$this->db->trans_start();
 			$this->db->delete('ssp_order_items', array('item_id' => $item_id, 'order_id' => $order_id));
 		$this->db->trans_complete();

@@ -442,10 +442,6 @@ class Running_Order extends React.Component {
                   <div>
                       <span className="btn btn-default btn-marginTop" onClick={this.clearOrder}>Clear</span>
                       <span className="btn btn-danger btn-marginTop pull-right" onClick={this.checkout}>Checkout</span>
-                      <button id='add_discount_percent_per_item' className='btn btn-success btn-sm modal-dlg' data-btn-add_discount='Submit' data-href='<?php echo site_url("Running_order_api/add_sc_pwd_discount"); ?>'
-                          title="Add SC/PWD Discount">
-                        <span>&nbsp;</span>Add SC/PWD Discount
-                      </button>
                   </div>
               </div>
             </div>
