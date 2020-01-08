@@ -1,6 +1,7 @@
+SET SQL_MODE = "";
 CREATE DATABASE IF NOT EXISTS live_db;
 USE live_db;
-SET SQL_MODE = "";
+
 CREATE TABLE IF NOT EXISTS `ssp_order_items` (
   `order_item_id` int NOT NULL AUTO_INCREMENT,
   `item_id` int NOT NULL DEFAULT '0',
